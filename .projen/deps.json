@@ -73,11 +73,6 @@
       "type": "build"
     },
     {
-      "name": "repolinter",
-      "version": "0.11.2",
-      "type": "build"
-    },
-    {
       "name": "ts-jest",
       "type": "build"
     },
