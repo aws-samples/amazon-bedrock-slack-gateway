@@ -5,7 +5,7 @@ import { awscdk } from "projen";
 import { NodePackageManager, TrailingComma } from "projen/lib/javascript";
 
 const project = new awscdk.AwsCdkTypeScriptApp({
-	cdkVersion: "2.137.0",
+	cdkVersion: "2.153.0",
 	cdkVersionPinning: true,
 	depsUpgrade: false,
 	githubOptions: {
