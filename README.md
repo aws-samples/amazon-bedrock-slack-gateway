@@ -58,7 +58,7 @@ export AWS_SECRET_ACCESS_KEY="..."
 If you would like to change the name of the stack, set the environment variable.
 
 ```
-export SLACK_NAME="my-stack-name"
+export STACK_NAME="my-stack-name"
 ```
 
 Now install this project's dependencies, bootstrap the account, and deploy the stack to your account.
