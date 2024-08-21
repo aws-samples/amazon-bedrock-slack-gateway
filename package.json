@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.137.0",
-    "cdk-nag": "2.28.104",
+    "cdk-nag": "2.28.185",
     "constructs": "^10.0.5"
   },
   "license": "MIT-0",

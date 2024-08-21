@@ -24,7 +24,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 	name: "slack-bedrock-integration",
 	projenrcTs: true,
 	projenVersion: "0.81.8",
-	deps: ["cdk-nag@2.28.104"],
+	deps: ["cdk-nag@2.28.185"],
 	devDeps: ["license-checker@25.0.1"],
 	gitignore: ["*.dtmp", "*.bkp", ".env*", "!.env-sample", "aggregated_results.txt", "acat-output.json", "acat_report/*"],
 	prettier: true,
