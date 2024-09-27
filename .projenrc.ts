@@ -1,9 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
-import { awscdk } from "projen";
-import { DependabotScheduleInterval } from "projen/lib/github";
-import { NodePackageManager, TrailingComma } from "projen/lib/javascript";
+import { awscdk, github, javascript } from "projen";
 
 const project = new awscdk.AwsCdkTypeScriptApp({
 	cdkVersion: "2.153.0",
@@ -13,7 +11,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 	},
 	copyrightOwner: "Amazon.com, Inc. or its affiliates. All Rights Reserved.",
 	license: "MIT-0",
-	packageManager: NodePackageManager.NPM,
+	packageManager: javascript.NodePackageManager.NPM,
 	pullRequestTemplate: true,
 	pullRequestTemplateContents: [
 		"*Issue #, if available:*",
@@ -25,11 +23,11 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 	projenrcTs: true,
 	projenVersion: "0.85.2",
 	deps: ["cdk-nag@2.28.185"],
-	devDeps: ["license-checker@25.0.1"],
+	devDeps: ["license-checker@25.0.1", "repolinter@v0.11.2"],
 	depsUpgrade: false,
 	dependabot: true,
 	dependabotOptions: {
-		scheduleInterval: DependabotScheduleInterval.MONTHLY,
+		scheduleInterval: github.DependabotScheduleInterval.MONTHLY,
 		ignoreProjen: false,
 	},
 	gitignore: ["*.dtmp", "*.bkp", ".env*", "!.env-sample", "aggregated_results.txt", "acat-output.json", "acat_report/*"],
@@ -38,7 +36,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 		settings: {
 			tabWidth: 4,
 			useTabs: true,
-			trailingComma: TrailingComma.ALL,
+			trailingComma: javascript.TrailingComma.ALL,
 			printWidth: 140,
 		},
 	},
@@ -46,6 +44,27 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 		prettier: true,
 		dirs: ["src", "src/**", "test", "test/**"],
 	},
+});
+
+const repolintWorkflow = project.github!.addWorkflow("repolint");
+repolintWorkflow.on({
+	pullRequest: {},
+});
+repolintWorkflow.addJob("repolint", {
+	runsOn: ["ubuntu-24.04"],
+	permissions: {
+		contents: github.workflows.JobPermission.READ,
+	},
+	steps: [
+		{
+			name: "Checkout",
+			uses: "actions/checkout@v4.2.0",
+		},
+		{
+			name: "Lint",
+			uses: "todogroup/repolinter-action@v1.7.1",
+		},
+	],
 });
 
 project.synth();

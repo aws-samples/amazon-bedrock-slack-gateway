@@ -57,4 +57,5 @@ junit.xml
 /cdk.out/
 .cdk.staging/
 .parcel-cache/
+!/.github/workflows/repolint.yml
 !/.projenrc.ts
