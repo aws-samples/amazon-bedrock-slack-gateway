@@ -8,7 +8,6 @@ import { NodePackageManager, TrailingComma } from "projen/lib/javascript";
 const project = new awscdk.AwsCdkTypeScriptApp({
 	cdkVersion: "2.153.0",
 	cdkVersionPinning: true,
-	depsUpgrade: false,
 	githubOptions: {
 		mergify: false,
 	},
@@ -27,9 +26,11 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 	projenVersion: "0.85.2",
 	deps: ["cdk-nag@2.28.185"],
 	devDeps: ["license-checker@25.0.1"],
+	depsUpgrade: false,
 	dependabot: true,
 	dependabotOptions: {
 		scheduleInterval: DependabotScheduleInterval.MONTHLY,
+		ignoreProjen: false,
 	},
 	gitignore: ["*.dtmp", "*.bkp", ".env*", "!.env-sample", "aggregated_results.txt", "acat-output.json", "acat_report/*"],
 	prettier: true,
