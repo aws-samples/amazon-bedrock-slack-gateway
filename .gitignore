@@ -41,6 +41,7 @@ acat_report/*
 junit.xml
 /coverage/
 !/.github/workflows/build.yml
+!/.github/dependabot.yml
 !/.github/pull_request_template.md
 !/.prettierignore
 !/.prettierrc.json

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 
 import { awscdk } from "projen";
+import { DependabotScheduleInterval } from "projen/lib/github";
 import { NodePackageManager, TrailingComma } from "projen/lib/javascript";
 
 const project = new awscdk.AwsCdkTypeScriptApp({
@@ -26,6 +27,10 @@ const project = new awscdk.AwsCdkTypeScriptApp({
 	projenVersion: "0.85.2",
 	deps: ["cdk-nag@2.28.185"],
 	devDeps: ["license-checker@25.0.1"],
+	dependabot: true,
+	dependabotOptions: {
+		scheduleInterval: DependabotScheduleInterval.MONTHLY,
+	},
 	gitignore: ["*.dtmp", "*.bkp", ".env*", "!.env-sample", "aggregated_results.txt", "acat-output.json", "acat_report/*"],
 	prettier: true,
 	prettierOptions: {
